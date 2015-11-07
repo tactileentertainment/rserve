@@ -1,5 +1,3 @@
-# It Builds an image to deploy a Rserve
-
 # Dotcloud ubuntu image
 FROM ubuntu:latest
 MAINTAINER wasserball
