@@ -2,7 +2,7 @@
 
 # Dotcloud ubuntu image
 FROM ubuntu:latest
-MAINTAINER Nick
+MAINTAINER wasserball
 
 # Install latest R
 RUN sudo sh -c 'echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list'
