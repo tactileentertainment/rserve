@@ -29,6 +29,8 @@ RUN sudo su - -c "R -e \"install.packages('Rserve', repos='http://cran.r-project
 RUN sudo su - -c "R -e \"install.packages('ggplot2', repos='http://cran.r-project.org')\""
 RUN sudo su - -c "R -e \"install.packages('RJSONIO', repos='http://cran.r-project.org')\""
 RUN sudo su - -c "R -e \"install.packages('rjson', repos='http://cran.r-project.org')\""
+RUN sudo su - -c "R -e \"install.packages('Rmisc', repos='http://cran.r-project.org')\""
+
 
 # adding start R script
 ADD start.R start.R

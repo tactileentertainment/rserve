@@ -9,3 +9,4 @@ Dockerfile for build a Rserve
 - ggplot2
 - RJSONIO
 - rjson
+- Rmisc (multiplot)
