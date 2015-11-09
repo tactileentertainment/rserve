@@ -11,6 +11,7 @@ RUN gpg -a --export E084DAB9 | sudo apt-key add -
 # Update and install
 RUN apt-get update && apt-get install -y \
   r-base \
+  r-recommended \
   r-base-dev \
   libcurl4-gnutls-dev \
   libxml2-dev \
