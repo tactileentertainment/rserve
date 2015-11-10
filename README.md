@@ -10,3 +10,4 @@ Dockerfile for build a Rserve
 - RJSONIO
 - rjson
 - Rmisc (multiplot)
+- signal
