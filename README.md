@@ -1,9 +1,10 @@
 Rserve - Docker
-=============
 
-Dockerfile for build a Rserve
+---
 
-##packages installed
+Rserve Imagate to execute R-Scripts over http. In my case i use Node.js and the npm-module rio.
+
+### packages installed
 
 - Rserve
 - ggplot2
@@ -11,3 +12,11 @@ Dockerfile for build a Rserve
 - rjson
 - Rmisc (multiplot)
 - signal
+
+### access
+
+- ```<ip of host>:6311```
+
+
+### npm Package
+- [rio](https://www.npmjs.com/package/rio)
