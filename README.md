@@ -12,6 +12,8 @@ Rserve Imagate to execute R-Scripts over http. In my case i use Node.js and the 
 - rjson
 - Rmisc (multiplot)
 - signal
+- foreach
+- doParallel
 
 ### access
 
