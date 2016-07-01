@@ -1,3 +1,6 @@
 #Start Rserve
 library(Rserve)
-run.Rserve(debug = TRUE, 6311, args = NULL, config.file = "Rserv.conf")
+setwd('/usr/src/app')
+file.sources = list.files(pattern="*.r|R")
+sapply(file.sources,source,.GlobalEnv)
+run.Rserve(6311, args = NULL, config.file = "/Rserv.conf")

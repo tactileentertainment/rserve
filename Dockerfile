@@ -35,6 +35,16 @@ RUN sudo su - -c "R -e \"install.packages('signal', repos='http://cran.r-project
 RUN sudo su - -c "R -e \"install.packages('foreach', repos='http://cran.r-project.org')\""
 RUN sudo su - -c "R -e \"install.packages('doParallel', repos='http://cran.r-project.org')\""
 
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Bundle app source
+COPY . /usr/src/app
+
+# Add rserve user
+RUN groupadd -r rserve && useradd -r -g rserve rserve
+
 # adding start R script
 ADD start.R start.R
 ADD Rserv.conf /Rserv.conf
