@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
 RUN R --version
 
 #install R packages
-RUN R -e "install.packages(c('Rserve','packrat'), repos='http://cran.r-project.org')"
+RUN R -e "install.packages('packrat', repos='http://cran.r-project.org')"
 
 # Add rserve user
 RUN groupadd -r rserve && useradd -r -g rserve rserve
@@ -38,11 +38,13 @@ ADD Rserv.conf /Rserv.conf
 
 # Create app directory
 RUN mkdir -p /usr/src/app
+RUN chown -R rserve /usr/src/app
 WORKDIR /usr/src/app
 
 # Bundle app source
 ONBUILD COPY . /usr/src/app/
-ONBUILD RUN R -e "packrat::init()"
+ONBUILD RUN su rserve -c "R -e \"packrat::init();\""
+ONBUILD RUN su rserve -c "R -e \"install.packages('Rserve', repos='http://cran.r-project.org')\""
 
 CMD [ "Rscript", "/start.R" ]
 EXPOSE 6311
