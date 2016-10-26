@@ -38,11 +38,11 @@ ADD Rserv.conf /Rserv.conf
 
 # Create app directory
 RUN mkdir -p /usr/src/app
-RUN chown -R rserve /usr/src/app
 WORKDIR /usr/src/app
 
 # Bundle app source
-ONBUILD COPY . /usr/src/app/
+ONBUILD COPY *.R *.r /usr/src/app/
+ONBUILD RUN chown -R rserve:rserve /usr/src/app
 ONBUILD RUN su rserve -c "R -e \"packrat::init();\""
 ONBUILD RUN su rserve -c "R -e \"install.packages('Rserve', repos='http://cran.r-project.org')\""
 
