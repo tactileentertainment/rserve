@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
 RUN R --version
 
 #install R packages
-RUN R -e "install.packages(c('Rserve','Rmisc','Rmisc','signal','foreach','doParallel','RJSONIO','stringr', 'zoo', 'parallel','pracma','rjson','gdata','nnet','RPostgreSQL','reshape'), repos='http://cran.r-project.org')"
+RUN R -e "install.packages(c('Rserve','packrat'), repos='http://cran.r-project.org')"
 
 # Add rserve user
 RUN groupadd -r rserve && useradd -r -g rserve rserve
@@ -35,12 +35,15 @@ RUN groupadd -r rserve && useradd -r -g rserve rserve
 # adding start R script
 ADD start.R start.R
 ADD Rserv.conf /Rserv.conf
-EXPOSE 6311
-CMD Rscript /start.R
 
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Bundle app source
-# COPY *.R *.r /usr/src/app/
+ONBUILD COPY packrat /usr/src/app/
+ONBUILD RUN R -e "packrat::restore()"
+ONBUILD COPY . /usr/src/app/
+
+CMD [ "Rscript", "/start.R" ]
+EXPOSE 6311
