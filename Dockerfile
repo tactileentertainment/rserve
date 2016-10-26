@@ -41,9 +41,8 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Bundle app source
-ONBUILD COPY packrat /usr/src/app/
-ONBUILD RUN R -e "packrat::restore()"
 ONBUILD COPY . /usr/src/app/
+ONBUILD RUN R -e "packrat::init()"
 
 CMD [ "Rscript", "/start.R" ]
 EXPOSE 6311
